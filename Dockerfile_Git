@@ -1,0 +1,14 @@
+FROM alpine
+
+WORKDIR /root/.ssh
+
+COPY  .
+
+WORKDIR /home/cci_admin
+
+COPY nginx/access.log .
+
+RUN apk update && apk upgrade \
+    apk add --no-cache git
+
+CMD git clone git@github.com:telest0/DockerDevOps.git
